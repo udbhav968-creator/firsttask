@@ -1,6 +1,6 @@
-# React Todo List Project
+# GSOC React Todo List Project
 
-A simple React todo list app built with Vite.
+A clean, Vite-powered React todo list starter repository for Google Summer of Code preparation.
 
 ## Setup
 
@@ -24,6 +24,6 @@ npm run dev
 - Remove tasks
 - Clear completed tasks
 
-## GitHub
+## Notes
 
-Initialize Git, commit your files, and push to your GitHub repository.
+This repository is ready for GitHub. Use `git status` to confirm the workspace is clean and commit any further changes before submission.
