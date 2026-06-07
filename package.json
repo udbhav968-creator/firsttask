@@ -1,7 +1,8 @@
 {
-  "name": "bill-gates-react",
+  "name": "gsoc-todo-list",
   "private": true,
   "version": "0.0.1",
+  "description": "A GSOC-ready React todo list application built with Vite.",
   "type": "module",
   "scripts": {
     "dev": "vite",
