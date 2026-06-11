@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
+const STORAGE_KEY = 'todo-tasks';
 const initialTasks = [
   { id: 1, title: 'Learn React basics', completed: false },
   { id: 2, title: 'Build a todo list app', completed: true },
@@ -7,8 +8,15 @@ const initialTasks = [
 ];
 
 export default function App() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState(() => {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : initialTasks;
+  });
   const [newTask, setNewTask] = useState('');
+
+  useEffect(() => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   const activeCount = useMemo(() => tasks.filter((task) => !task.completed).length, [tasks]);
 
