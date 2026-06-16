@@ -1,25 +1,26 @@
-# GSOC React Todo List Project
+# CIPL Studio Website
 
-A polished React todo list application built with Vite, designed as a GSOC-ready starter project.
+A six-page React website built with Vite, featuring responsive navigation, modern styling, and a functional contact form.
 
 ## Overview
 
-This repository demonstrates a modern frontend implementation of a task management application using React and Vite. It is designed for GSOC submissions, with clear setup, documentation, and a roadmap for future enhancements.
+This repository now contains a full React-based website for CIPL Studio. The site includes Home, About, Services, Portfolio, Blog, and Contact pages with client-side routing powered by `react-router-dom`.
 
 ## Features
 
-- Create, complete, and remove todo items
-- Clear all completed tasks
-- Responsive layout for desktop and mobile
-- Accessible form inputs and buttons
-- Lightweight, performant Vite build
+- Six-page responsive website
+- React Router navigation between pages
+- Clean green-themed UI and layout
+- Functional contact form with local submit feedback
+- Production-ready Vite build
 
 ## Tech Stack
 
 - React 18
 - Vite
+- React Router Dom
 - JavaScript (ESM)
-- CSS modules and responsive styling
+- CSS styling
 
 ## Setup
 
@@ -32,35 +33,29 @@ Open the URL shown in the terminal after Vite starts.
 
 ## Project Structure
 
-- `index.html` — entry point for the web app
+- `index.html` — application entry point
 - `package.json` — project metadata and scripts
-- `vite.config.js` — Vite configuration
 - `src/main.jsx` — React application bootstrap
-- `src/App.jsx` — todo app logic and UI
-- `src/styles.css` — app styling
+- `src/App.jsx` — site routing and layout
+- `src/styles.css` — shared website styling
+- `src/pages/` — individual page components for each route
 
-## GSOC Goals
+## Pages
 
-This project is built to showcase:
+- `Home` — hero introduction and features
+- `About` — studio mission and values
+- `Services` — service offerings overview
+- `Portfolio` — sample project concepts
+- `Blog` — article summaries and guidance
+- `Contact` — contact form and contact details
 
-- frontend development skills with React
-- component-driven UI design
-- clean documentation for open-source contribution
-- a clear proposal and implementation roadmap for GSOC
+## Deployment
 
-## Future Improvements
+The website is ready for deployment via any static hosting provider that supports Vite builds.
 
-Planned enhancements include:
-
-- task categories and priorities
-- local persistence using browser storage
-- authentication/integration with backend APIs
-- dark mode and theme settings
-- unit tests and end-to-end testing
-
-## Contribution
-
-Contributions are welcome via issues and pull requests. See `CONTRIBUTING.md` for guidelines.
+```bash
+npm run build
+```
 
 ## License
 
