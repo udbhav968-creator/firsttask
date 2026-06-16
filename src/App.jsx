@@ -1,99 +1,68 @@
-import { useEffect, useMemo, useState } from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
+import Services from './pages/Services.jsx';
+import Portfolio from './pages/Portfolio.jsx';
+import Blog from './pages/Blog.jsx';
+import Contact from './pages/Contact.jsx';
+import './styles.css';
 
-const STORAGE_KEY = 'todo-tasks';
-const initialTasks = [
-  { id: 1, title: 'Learn React basics', completed: false },
-  { id: 2, title: 'Build a todo list app', completed: true },
-  { id: 3, title: 'Push code to GitHub', completed: false },
+const navItems = [
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'About' },
+  { path: '/services', label: 'Services' },
+  { path: '/portfolio', label: 'Portfolio' },
+  { path: '/blog', label: 'Blog' },
+  { path: '/contact', label: 'Contact' },
 ];
 
 export default function App() {
-  const [tasks, setTasks] = useState(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : initialTasks;
-  });
-  const [newTask, setNewTask] = useState('');
-
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-  }, [tasks]);
-
-  const activeCount = useMemo(() => tasks.filter((task) => !task.completed).length, [tasks]);
-
-  function handleAddTask(event) {
-    event.preventDefault();
-    const title = newTask.trim();
-    if (!title) return;
-
-    setTasks((current) => [
-      ...current,
-      { id: Date.now(), title, completed: false },
-    ]);
-    setNewTask('');
-  }
-
-  function toggleCompletion(id) {
-    setTasks((current) =>
-      current.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  }
-
-  function removeTask(id) {
-    setTasks((current) => current.filter((task) => task.id !== id));
-  }
-
-  function clearCompleted() {
-    setTasks((current) => current.filter((task) => !task.completed));
-  }
-
   return (
-    <main className="app-shell">
-      <section className="card todo-card">
-        <header className="header-row">
-          <div>
-            <h1>Todo List</h1>
-            <p className="intro">A modern React todo app ready for GitHub deployment.</p>
+    <BrowserRouter>
+      <main className="app-shell">
+        <div className="site-card">
+          <header className="site-header">
+            <div>
+              <p className="brand">CIPL Studio</p>
+              <h1 className="site-title">A modern website built for digital growth.</h1>
+              <p className="hero-copy">
+                Six pages of responsive design, clear navigation, and client-side routing for a fully
+                functioning React website.
+              </p>
+            </div>
+            <nav className="site-nav">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  end={item.path === '/'}
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link active-link' : 'nav-link'
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+          </header>
+
+          <div className="page-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
           </div>
-          <div className="stats">{activeCount} active task{activeCount === 1 ? '' : 's'}</div>
-        </header>
 
-        <form className="task-form" onSubmit={handleAddTask}>
-          <input
-            value={newTask}
-            onChange={(event) => setNewTask(event.target.value)}
-            placeholder="Add a new task"
-            aria-label="New task"
-          />
-          <button type="submit">Add Task</button>
-        </form>
-
-        <ul className="task-list">
-          {tasks.map((task) => (
-            <li key={task.id} className={task.completed ? 'completed' : ''}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleCompletion(task.id)}
-                />
-                <span>{task.title}</span>
-              </label>
-              <button className="delete-btn" onClick={() => removeTask(task.id)}>
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-
-        <div className="footer-row">
-          <button className="secondary-btn" onClick={clearCompleted}>
-            Clear completed
-          </button>
-          <p className="footer-note">Built with React, Vite, and modern hooks.</p>
+          <footer className="site-footer">
+            <p>© 2026 CIPL Studio. Designed for performance, clarity, and modern web experiences.</p>
+          </footer>
         </div>
-      </section>
-    </main>
+      </main>
+    </BrowserRouter>
   );
 }
