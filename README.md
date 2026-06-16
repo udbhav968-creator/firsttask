@@ -1,6 +1,6 @@
 # CIPL Studio Website
 
-A six-page React website built with Vite, featuring responsive navigation, modern styling, and a functional contact form.
+A six-page React website built with Vite, featuring responsive navigation, modern green-themed styling, and a functional contact form.
 
 ## Overview
 
